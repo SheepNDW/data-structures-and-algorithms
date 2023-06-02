@@ -68,8 +68,9 @@ pnpm dev
 
 import the file you want to debug in `main.js`, and print the result in the console.
 
-## TODO
+## Changelog
 
-- [ ] add `README.md` for each data structure and algorithm
-- [ ] add Heap sort algorithm
-- [ ] ...
+- ...
+- 2023/06/02: Updated [bubble sort notes](./src/algorithms/sorting/bubble-sort/)
+- 2023/06/01: Updated [time and space complexity notes](./src/bigO-notation-and-complexity/)
+- 2023/05/12: Project initialization
