@@ -1,19 +1,35 @@
 /**
  * Insertion Sort algorithm
- * @param {unknown[]} array
+ * @param {number[]} array
  */
-export function insertionSort(array) {
-  const length = array.length;
-  let temp;
-
-  for (let i = 1; i < length; i++) {
-    temp = array[i];
-    let j = i;
-    while (j > 0 && array[j - 1] > temp) {
-      array[j] = array[j - 1];
-      j--;
+function insertionSort(array) {
+  let n = array.length;
+  for (let i = 1; i < n; i++) {
+    let target = array[i];
+    let j;
+    // 合併兩個內部迴圈
+    for (j = i - 1; j >= 0 && array[j] > target; j--) {
+      array[j + 1] = array[j]; // 挪出空位
     }
-
-    array[j] = temp;
+    array[j + 1] = target; // 插入目標值
   }
 }
+
+/**
+ * Insertion Sort algorithm (while loop)
+ * @param {number[]} array
+ */
+function insertionSort2(array) {
+  let n = array.length;
+  for (let i = 1; i < n; i++) {
+    let target = array[i];
+    let j = i - 1;
+    while (j > 0 && array[j - 1] > target) {
+      array[j] = array[j - 1]; // 前面覆蓋後面
+      j--;
+    }
+    array[j] = target; // 插入目標值
+  }
+}
+
+export { insertionSort, insertionSort2 };
