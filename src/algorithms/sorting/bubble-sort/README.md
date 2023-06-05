@@ -134,13 +134,13 @@ function cocktailSort(array) {
 完全亂序的情況 cocktailSort 290
 ```
 
-## 複雜度
+## 複雜度（Complexity）
 
 氣泡排序的複雜度是 $O(n^2)$，但在最好的情況下能達到 $O(n)$，因為它至少要跑一次迴圈掃過每個元素的位置判斷是否需要交換。
 
-| Name            | Best  |    Average    |     Worst     | Memory |
-| --------------- | :---: | :-----------: | :-----------: | :----: |
-| **Bubble sort** |   n   | n<sup>2</sup> | n<sup>2</sup> |   1    |
+| Name            | Average  |  Best  |  Worst   | Space  |  Method  | Stable |
+| --------------- | :------: | :----: | :------: | :----: | :------: | :----: |
+| **Bubble sort** | $O(n^2)$ | $O(n)$ | $O(n^2)$ | $O(1)$ | In-place |  Yes   |
 
 ## 參考資料
 
