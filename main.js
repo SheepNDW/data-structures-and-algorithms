@@ -29,11 +29,9 @@ document.querySelector('#app').innerHTML = `
 // Algorithms
 // import { bucketSort } from '@/algorithms/sorting/bucket-sort/BucketSort';
 // import { radixSort } from '@/algorithms/sorting/radix-sort/RadixSort';
-import { binarySearch } from '@/algorithms/search/binary-search/binarySearch';
+// import { binarySearch } from '@/algorithms/search/binary-search/binarySearch';
+// import { mergeSort } from '@/algorithms/sorting/merge-sort/MergeSort';
 
-const arr = [2, 4, 5, 7, 9];
+// const arr = [3, 4, 9, 1, 8, 2, 0, 7, 6, 5];
 
-console.log(binarySearch(2, arr));
-console.log(binarySearch(5, arr));
-console.log(binarySearch(0, arr));
-console.log(binarySearch(10, arr));
+// mergeSort(arr);
