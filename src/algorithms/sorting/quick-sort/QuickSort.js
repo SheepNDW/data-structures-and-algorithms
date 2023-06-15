@@ -173,4 +173,4 @@ function partition3(array, left, right) {
   return prev;
 }
 
-export { quickSort, quickSortSimple, quickSortStack };
+export { quickSort, quickSortSimple, quickSortStack, partition, partition2, partition3 };
