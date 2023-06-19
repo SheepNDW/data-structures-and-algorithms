@@ -71,6 +71,7 @@ import the file you want to debug in `main.js`, and print the result in the cons
 ## Changelog
 
 - ...
+- 2023/06/19: Updated [counting sort notes](./src/algorithms/sorting/counting-sort/)
 - 2023/06/15: Updated [quick sort notes](./src/algorithms/sorting/quick-sort/)
 - 2023/06/09: Updated [merge sort notes](./src/algorithms/sorting/merge-sort/)
 - 2023/06/06: Updated [shell sort notes](./src/algorithms/sorting/shell-sort/)
