@@ -1,26 +1,26 @@
 import { describe, expect, it } from 'vitest';
-import { radixSort } from './RadixSort';
+import { radixSort as lsdRadixSort, radixSort2 as msdRadixSort } from './RadixSort';
 import { sortedArr, notSortedArr, equalArr, reverseArr } from '../SortTestUtils';
 
-describe('radix sort', () => {
+describe('lsd radix sort', () => {
   it('should sort array', () => {
     const array = [...notSortedArr];
 
-    const result = radixSort(array);
+    const result = lsdRadixSort(array);
 
     expect(result).toEqual(sortedArr);
 
-    const array2 = [35, 2, 26, 2, 5, 8, 34, 1, 56, 99, 33];
+    const array2 = [170, 45, 75, 90, 802, 2, 24, 66];
 
-    const result2 = radixSort(array2);
+    const result2 = lsdRadixSort(array2);
 
-    expect(result2).toEqual([1, 2, 2, 5, 8, 26, 33, 34, 35, 56, 99]);
+    expect(result2).toEqual([2, 24, 45, 66, 75, 90, 170, 802]);
   });
 
   it('should sort array with reverse numbers', () => {
     const array = [...reverseArr];
 
-    const result = radixSort(array);
+    const result = lsdRadixSort(array);
 
     expect(result).toEqual(sortedArr);
   });
@@ -28,7 +28,39 @@ describe('radix sort', () => {
   it('should sort array with equal numbers', () => {
     const array = [...equalArr];
 
-    const result = radixSort(array);
+    const result = lsdRadixSort(array);
+
+    expect(result).toEqual(equalArr);
+  });
+});
+
+describe('msd radix sort', () => {
+  it('should sort array', () => {
+    const array = [...notSortedArr];
+
+    const result = msdRadixSort(array);
+
+    expect(result).toEqual(sortedArr);
+
+    const array2 = [170, 45, 75, 90, 802, 2, 24, 66];
+
+    const result2 = msdRadixSort(array2);
+
+    expect(result2).toEqual([2, 24, 45, 66, 75, 90, 170, 802]);
+  });
+
+  it('should sort array with reverse numbers', () => {
+    const array = [...reverseArr];
+
+    const result = msdRadixSort(array);
+
+    expect(result).toEqual(sortedArr);
+  });
+
+  it('should sort array with equal numbers', () => {
+    const array = [...equalArr];
+
+    const result = msdRadixSort(array);
 
     expect(result).toEqual(equalArr);
   });
