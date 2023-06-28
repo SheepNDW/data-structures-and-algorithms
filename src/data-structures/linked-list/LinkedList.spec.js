@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { LinkedList } from './LinkedList';
+import { LinkedList, List } from './LinkedList';
 
 describe('LinkedList', () => {
   it('should create an empty linked list', () => {
@@ -72,5 +72,55 @@ describe('LinkedList', () => {
     list.push(300);
     expect(list.indexOf(100)).toBe(0);
     expect(list.indexOf(1000)).toBe(-1);
+  });
+});
+
+describe('List', () => {
+  it('should create an empty list', () => {
+    const list = new List();
+    expect(list).toBeDefined();
+    expect(list.length).toBe(0);
+    expect(list.head).toBeNull();
+  });
+
+  it('should insert an element at a given position in the list', () => {
+    const list = new List();
+    list.insertAt(0, 1);
+    list.insertAt(1, 2);
+    list.insertAt(2, 3);
+    list.insertAt(3, 4);
+
+    const expected = [1, 2, 3, 4];
+
+    list.forEach((el, i) => {
+      expect(el).toBe(expected[i]);
+    });
+  });
+
+  it('it should throw an error if the index is out of range', () => {
+    const list = new List();
+    list.insertAt(0, 1);
+    list.insertAt(1, 2);
+    list.insertAt(2, 3);
+
+    const invalidInsert = () => list.insertAt(10, 4);
+
+    expect(invalidInsert).toThrowError('10 超過 list 長度 3');
+  });
+
+  it('should remove the element at the specified position in this list', () => {
+    const list = new List();
+    list.insertAt(0, 1);
+    list.insertAt(1, 2);
+    list.insertAt(2, 3);
+    list.insertAt(3, 4);
+
+    list.removeAt(1);
+
+    const expected = [1, 3, 4];
+
+    list.forEach((el, i) => {
+      expect(el).toBe(expected[i]);
+    });
   });
 });

@@ -18,7 +18,7 @@ document.querySelector('#app').innerHTML = `
   </div>
 `;
 
-// import { LinkedList } from '@/data-structures/linked-list/LinkedList';
+import { LinkedList, List } from '@/data-structures/linked-list/LinkedList';
 // import { DoublyLinkedList } from '@/data-structures/doubly-linked-list/DoublyLinkedList';
 // import { CircularLinkedList } from '@/data-structures/circular-linked-list/CircularLinkedList';
 // import { HashTable } from '@/data-structures/map/HashTable';
@@ -35,3 +35,17 @@ document.querySelector('#app').innerHTML = `
 // const arr = [3, 4, 9, 1, 8, 2, 0, 7, 6, 5];
 
 // mergeSort(arr);
+
+const list = new List();
+list.insertAt(0, 111);
+list.insertAt(1, 222);
+list.insertAt(1, 333);
+list.insertAt(3, 444);
+list.forEach((el, i) => console.log(el, i));
+try {
+  list.insertAt(8, 333);
+} catch (error) {
+  console.log(error);
+}
+list.removeAt(1);
+list.forEach((el, i) => console.log(el, i));
