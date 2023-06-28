@@ -44,12 +44,15 @@ class List {
     this.head = null;
     this.length = 0;
   }
+
   size() {
     return this.length;
   }
+
   isEmpty() {
     return this.size() === 0;
   }
+
   clear() {
     this.head = null;
     this.length = 0;
