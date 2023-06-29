@@ -11,7 +11,7 @@
   - [Dictionary](src/data-structures/map/dictionary)
   - [Hash Table](src/data-structures/map/hash-table)
 - [Linked List](src/data-structures/linked-list)
-- [Doubly Linked List](src/data-structures/doubly-linked-list)
+- [Doubly Linked List](src/data-structures/linked-list/doubly-linked-list/)
 - [Circular Linked List](src/data-structures/circular-linked-list)
 - Tree
   - [Binary Search Tree](src/data-structures/tree/binary-search-tree)
@@ -28,6 +28,7 @@
   - [Counting Sort](src/algorithms/sorting/counting-sort)
   - [Bucket Sort](src/algorithms/sorting/bucket-sort)
   - [Radix Sort](src/algorithms/sorting/radix-sort)
+  - [Shell Sort](src/algorithms/sorting/shell-sort)
 - Searches
   - [Sequential Search](src/algorithms/search/sequential-search)
   - [Binary Search](src/algorithms/search/binary-search)
@@ -71,6 +72,8 @@ import the file you want to debug in `main.js`, and print the result in the cons
 ## Changelog
 
 - ...
+- 2023/06/29: Updated [doubly linked list notes](./src/data-structures/linked-list/doubly-linked-list/)
+- 2023/06/28: Updated [linked list notes](./src/data-structures/linked-list/)
 - 2023/06/26: Updated [radix sort notes](./src/algorithms/sorting/radix-sort/)
 - 2023/06/23: Updated [bucket sort notes](./src/algorithms/sorting/bucket-sort/)
 - 2023/06/19: Updated [counting sort notes](./src/algorithms/sorting/counting-sort/)
