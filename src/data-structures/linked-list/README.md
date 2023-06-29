@@ -130,3 +130,5 @@ list.forEach((el, i) => console.log(el, i));
 ```
 
 讓我們把它拿來跟陣列做比較，由於 Linked list 沒有索引這種可以一次到位的“神器”，要存取某個元素都必須遍歷整串 list，所以時間複雜度是 O(n)，但是在增刪元素時，Linked list 的效率就比陣列高了，因為它不需要像陣列一樣，把後面的元素都往後移動，只需要改變指標的指向就可以了，所以時間複雜度是 O(1)。
+
+## [雙向鏈結串列 Doubly Linked List](./doubly-linked-list/)

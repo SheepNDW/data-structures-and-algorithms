@@ -18,8 +18,8 @@ document.querySelector('#app').innerHTML = `
   </div>
 `;
 
-import { LinkedList, List } from '@/data-structures/linked-list/LinkedList';
-// import { DoublyLinkedList } from '@/data-structures/doubly-linked-list/DoublyLinkedList';
+// import { LinkedList, List } from '@/data-structures/linked-list/LinkedList';
+import { DoublyList } from '@/data-structures/linked-list/doubly-linked-list/DoublyLinkedList';
 // import { CircularLinkedList } from '@/data-structures/circular-linked-list/CircularLinkedList';
 // import { HashTable } from '@/data-structures/map/HashTable';
 // import { BinarySearchTree } from '@/data-structures/tree/binary-search-tree/BinarySearchTree';
@@ -36,16 +36,27 @@ import { LinkedList, List } from '@/data-structures/linked-list/LinkedList';
 
 // mergeSort(arr);
 
-const list = new List();
+/** @type {DoublyList<number>} */
+const list = new DoublyList();
+
 list.insertAt(0, 111);
 list.insertAt(1, 222);
-list.insertAt(1, 333);
+list.insertAt(2, 333);
 list.insertAt(3, 444);
+list.insertAt(4, 555);
+list.insertAt(5, 666);
+list.insertAt(0, 888);
+
 list.forEach((el, i) => console.log(el, i));
+
 try {
-  list.insertAt(8, 333);
+  list.insertAt(10, 777);
 } catch (error) {
   console.log(error);
 }
+
 list.removeAt(1);
 list.forEach((el, i) => console.log(el, i));
+
+list.clear();
+console.log(list);
