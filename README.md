@@ -12,7 +12,7 @@
   - [Hash Table](src/data-structures/map/hash-table)
 - [Linked List](src/data-structures/linked-list)
 - [Doubly Linked List](src/data-structures/linked-list/doubly-linked-list/)
-- [Circular Linked List](src/data-structures/circular-linked-list)
+- [Circular Linked List](src/data-structures/linked-list/circular-linked-list)
 - Tree
   - [Binary Search Tree](src/data-structures/tree/binary-search-tree)
 - [Heap](src/data-structures/heap) - max and min heap versions
@@ -72,6 +72,7 @@ import the file you want to debug in `main.js`, and print the result in the cons
 ## Changelog
 
 - ...
+- 2023/06/30: updated [circular linked list notes](./src/data-structures/linked-list/circular-linked-list)
 - 2023/06/29: Updated [doubly linked list notes](./src/data-structures/linked-list/doubly-linked-list/)
 - 2023/06/28: Updated [linked list notes](./src/data-structures/linked-list/)
 - 2023/06/26: Updated [radix sort notes](./src/algorithms/sorting/radix-sort/)
