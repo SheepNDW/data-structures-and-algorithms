@@ -136,3 +136,5 @@ list.forEach((el, i) => console.log(el, i));
 ## [有排序的鏈結串列 Sorted Linked List](./sorted-list/)
 
 ## [環狀鏈結串列 Circular Linked List](./circular-linked-list/)
+
+## [鏈結串列排序演算法 Linked List Sorting](./sorting/)

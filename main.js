@@ -20,7 +20,9 @@ document.querySelector('#app').innerHTML = `
 
 // import { LinkedList, List } from '@/data-structures/linked-list/LinkedList';
 import { DoublyList } from '@/data-structures/linked-list/doubly-linked-list/DoublyLinkedList';
-import { CircularLink } from '@/data-structures/linked-list/circular-linked-list/CircularLinkedList';
+import { insertSort } from '@/data-structures/linked-list/sorting/insertion-sort';
+import { bubbleSort } from '@/data-structures/linked-list/sorting/bubble-sort';
+// import { CircularLink } from '@/data-structures/linked-list/circular-linked-list/CircularLinkedList';
 // import { HashTable } from '@/data-structures/map/HashTable';
 // import { BinarySearchTree } from '@/data-structures/tree/binary-search-tree/BinarySearchTree';
 // import { MinHeap } from '@/data-structures/heap/MinHeap';
@@ -61,15 +63,25 @@ import { CircularLink } from '@/data-structures/linked-list/circular-linked-list
 // list.clear();
 // console.log(list);
 
-const list = new CircularLink();
+// const list = new CircularLink();
 
-list.insertAt(0, 111);
-list.insertAt(1, 222);
-list.insertAt(2, 333);
-list.insertAt(1, 444);
-list.insertAt(3, 666);
+// list.insertAt(0, 111);
+// list.insertAt(1, 222);
+// list.insertAt(2, 333);
+// list.insertAt(1, 444);
+// list.insertAt(3, 666);
 
-list.forEach((el, i) => console.log(el, i));
+// list.forEach((el, i) => console.log(el, i));
 
-list.removeAt(0);
-console.log(list);
+// list.removeAt(0);
+// console.log(list);
+
+const array = [2, 3, 8, 7, 4, 5, 9, 6, 1, 0];
+const list = new DoublyList();
+array.forEach((el, i) => {
+  list.insertAt(i, el);
+});
+list.forEach((el, i) => console.log(i, el));
+bubbleSort(list);
+console.log('----sorted----', list);
+list.forEach((el, i) => console.log(i, el));
