@@ -13,6 +13,10 @@ export class Stack {
     return this.#items[this.#items.length - 1];
   }
 
+  top() {
+    return this.peek();
+  }
+
   isEmpty() {
     return this.#items.length === 0;
   }
