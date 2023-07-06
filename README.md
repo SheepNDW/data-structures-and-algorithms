@@ -72,8 +72,9 @@ import the file you want to debug in `main.js`, and print the result in the cons
 ## Changelog
 
 - ...
+- 2023/07/05: Updated [stack notes](./src/data-structures/stack)
 - 2023/07/04: Updated [linked list sorting notes](./src/data-structures/linked-list/sorting)
-- 2023/06/30: updated [circular linked list notes](./src/data-structures/linked-list/circular-linked-list)
+- 2023/06/30: Updated [circular linked list notes](./src/data-structures/linked-list/circular-linked-list)
 - 2023/06/29: Updated [doubly linked list notes](./src/data-structures/linked-list/doubly-linked-list/)
 - 2023/06/28: Updated [linked list notes](./src/data-structures/linked-list/)
 - 2023/06/26: Updated [radix sort notes](./src/algorithms/sorting/radix-sort/)
