@@ -16,6 +16,7 @@
 - Tree
   - [Binary Search Tree](src/data-structures/tree/binary-search-tree)
 - [Heap](src/data-structures/heap) - max and min heap versions
+- [bitmap](src/data-structures/bitmap)
 
 ## Algorithms
 
@@ -72,6 +73,7 @@ import the file you want to debug in `main.js`, and print the result in the cons
 ## Changelog
 
 - ...
+- 2023/07/14: Updated [bitmap notes](./src/data-structures/bitmap)
 - 2023/07/05: Updated [stack notes](./src/data-structures/stack)
 - 2023/07/04: Updated [linked list sorting notes](./src/data-structures/linked-list/sorting)
 - 2023/06/30: Updated [circular linked list notes](./src/data-structures/linked-list/circular-linked-list)
