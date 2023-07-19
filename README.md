@@ -73,6 +73,7 @@ import the file you want to debug in `main.js`, and print the result in the cons
 ## Changelog
 
 - ...
+- 2023/07/19: Updated [hash notes](./src/data-structures/map/hash-table)
 - 2023/07/14: Updated [bitmap notes](./src/data-structures/bitmap)
 - 2023/07/05: Updated [stack notes](./src/data-structures/stack)
 - 2023/07/04: Updated [linked list sorting notes](./src/data-structures/linked-list/sorting)

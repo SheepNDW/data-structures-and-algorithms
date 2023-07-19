@@ -24,6 +24,7 @@ import { insertSort } from '@/data-structures/linked-list/sorting/insertion-sort
 import { bubbleSort } from '@/data-structures/linked-list/sorting/bubble-sort';
 // import { CircularLink } from '@/data-structures/linked-list/circular-linked-list/CircularLinkedList';
 // import { HashTable } from '@/data-structures/map/HashTable';
+import { Hash } from '@/data-structures/map/hash-table/chaining/Hash';
 // import { BinarySearchTree } from '@/data-structures/tree/binary-search-tree/BinarySearchTree';
 // import { MinHeap } from '@/data-structures/heap/MinHeap';
 // import { MaxHeap } from '@/data-structures/heap/MaxHeap';
@@ -34,54 +35,19 @@ import { bubbleSort } from '@/data-structures/linked-list/sorting/bubble-sort';
 // import { binarySearch } from '@/algorithms/search/binary-search/binarySearch';
 // import { mergeSort } from '@/algorithms/sorting/merge-sort/MergeSort';
 
-// const arr = [3, 4, 9, 1, 8, 2, 0, 7, 6, 5];
+const names = ['First Name', 'Last Name', 'address', 'phone', 'k101', 'k110'];
 
-// mergeSort(arr);
+const descs = ['Kobe', 'Bryant', 'USA', '26300788', 'Value1', 'Value2'];
 
-// /** @type {DoublyList<number>} */
-// const list = new DoublyList();
+const hash = new Hash();
 
-// list.insertAt(0, 111);
-// list.insertAt(1, 222);
-// list.insertAt(2, 333);
-// list.insertAt(3, 444);
-// list.insertAt(4, 555);
-// list.insertAt(5, 666);
-// list.insertAt(0, 888);
+for (let i = 0; i < 6; i++) {
+  hash.insert(names[i], descs[i]);
+}
+console.log('we should see ', hash.get('k110'));
+hash.insert('phone', '9433120451'); // 這裡計算的 hash 是碰撞的，是為了測試碰撞情況下的插入
+console.log('we have ', hash.get('k101'), 'and', hash.get('phone'));
 
-// list.forEach((el, i) => console.log(el, i));
-
-// try {
-//   list.insertAt(10, 777);
-// } catch (error) {
-//   console.log(error);
-// }
-
-// list.removeAt(1);
-// list.forEach((el, i) => console.log(el, i));
-
-// list.clear();
-// console.log(list);
-
-// const list = new CircularLink();
-
-// list.insertAt(0, 111);
-// list.insertAt(1, 222);
-// list.insertAt(2, 333);
-// list.insertAt(1, 444);
-// list.insertAt(3, 666);
-
-// list.forEach((el, i) => console.log(el, i));
-
-// list.removeAt(0);
-// console.log(list);
-
-const array = [2, 3, 8, 7, 4, 5, 9, 6, 1, 0];
-const list = new DoublyList();
-array.forEach((el, i) => {
-  list.insertAt(i, el);
-});
-list.forEach((el, i) => console.log(i, el));
-bubbleSort(list);
-console.log('----sorted----', list);
-list.forEach((el, i) => console.log(i, el));
+// hash.forEach((key, value) => {
+//   console.log(key, value);
+// });
