@@ -26,6 +26,7 @@ import { bubbleSort } from '@/data-structures/linked-list/sorting/bubble-sort';
 // import { HashTable } from '@/data-structures/map/HashTable';
 import { Hash } from '@/data-structures/map/hash-table/chaining/Hash';
 // import { BinarySearchTree } from '@/data-structures/tree/binary-search-tree/BinarySearchTree';
+import { Tree } from '@/data-structures/tree/binary-tree/Tree';
 // import { MinHeap } from '@/data-structures/heap/MinHeap';
 // import { MaxHeap } from '@/data-structures/heap/MaxHeap';
 
@@ -35,19 +36,34 @@ import { Hash } from '@/data-structures/map/hash-table/chaining/Hash';
 // import { binarySearch } from '@/algorithms/search/binary-search/binarySearch';
 // import { mergeSort } from '@/algorithms/sorting/merge-sort/MergeSort';
 
-const names = ['First Name', 'Last Name', 'address', 'phone', 'k101', 'k110'];
+// const names = ['First Name', 'Last Name', 'address', 'phone', 'k101', 'k110'];
 
-const descs = ['Kobe', 'Bryant', 'USA', '26300788', 'Value1', 'Value2'];
+// const descs = ['Kobe', 'Bryant', 'USA', '26300788', 'Value1', 'Value2'];
 
-const hash = new Hash();
+// const hash = new Hash();
 
-for (let i = 0; i < 6; i++) {
-  hash.insert(names[i], descs[i]);
-}
-console.log('we should see ', hash.get('k110'));
-hash.insert('phone', '9433120451'); // 這裡計算的 hash 是碰撞的，是為了測試碰撞情況下的插入
-console.log('we have ', hash.get('k101'), 'and', hash.get('phone'));
+// for (let i = 0; i < 6; i++) {
+//   hash.insert(names[i], descs[i]);
+// }
+// console.log('we should see ', hash.get('k110'));
+// hash.insert('phone', '9433120451'); // 這裡計算的 hash 是碰撞的，是為了測試碰撞情況下的插入
+// console.log('we have ', hash.get('k101'), 'and', hash.get('phone'));
 
 // hash.forEach((key, value) => {
 //   console.log(key, value);
 // });
+
+const tree = new Tree();
+
+tree.insert(1);
+tree.insert(2);
+tree.insert(3);
+tree.insert(4);
+tree.insert(5);
+tree.insert(6);
+tree.insert(7);
+tree.insert(8);
+
+// tree.remove(1);
+
+console.log(tree.getNodeSize(tree.root));
