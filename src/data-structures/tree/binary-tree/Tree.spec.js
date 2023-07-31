@@ -120,4 +120,18 @@ describe('Binary Tree', () => {
 
     expect(traversal).toEqual(expectedTraversal);
   });
+
+  it('levelOrder: should traverse in level-order', () => {
+    const tree = new Tree();
+    tree.insert(5);
+    tree.insert(3);
+    tree.insert(7);
+
+    const expectedTraversal = [5, 3, 7];
+    const traversal = [];
+
+    tree.levelOrder((node) => traversal.push(node.data));
+
+    expect(traversal).toEqual(expectedTraversal);
+  });
 });

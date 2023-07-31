@@ -10,70 +10,59 @@ class TreeNode {
   }
 }
 
-class Tree {
+// 沿用之前 class Tree 的方法，僅重寫 insert、find、remove 和 toString 方法，新增 printNodeByLevel 和 show 方法
+export class BST {
   constructor() {
     /** @type {TreeNode | null} */
     this.root = null;
     this._size = 0;
-    this._insertLeft = false;
   }
 
   insert(data) {
-    const dir = (this._insertLeft = !this._insertLeft); // 插入方向
+    const node = new TreeNode(data);
+    if (this.root === null) {
+      this.root = node;
+      this._size++;
+      return true;
+    }
 
-    /** @param {TreeNode} node  @param {any} data  */
-    function insertIt(node, data) {
-      if (node.data === data) {
-        return false;
-      } else if (!node.left) {
-        node.left = new TreeNode(data);
-        node.left.parent = node;
-        return true;
-      } else if (!node.right) {
-        node.right = new TreeNode(data);
-        node.right.parent = node;
-        return true;
-      } else {
-        if (dir === true) {
-          return insertIt(node.left, data); // 遞迴
+    let current = this.root;
+    let parent = null;
+    while (current) {
+      parent = current;
+      if (data === current.data) return false;
+      node.parent = parent;
+      if (data < current.data) {
+        current = current.left;
+        if (current === null) {
+          parent.left = node;
+          this._size++;
+          return true;
         }
-        return insertIt(node.right, data); // 遞迴
+      } else {
+        current = current.right;
+        if (current === null) {
+          parent.right = node;
+          this._size++;
+          return true;
+        }
       }
     }
-
-    let ret = false;
-    if (!this.root) {
-      this.root = new TreeNode(data);
-      ret = true;
-    } else {
-      ret = insertIt(this.root, data);
-    }
-
-    if (ret) {
-      this._size++;
-    }
-
-    return ret;
   }
 
   /** @returns {TreeNode | null} */
   find(data) {
-    let ret = null;
-
-    /** @param {TreeNode} node @param {any} data */
-    function findIt(node, data) {
-      if (node) {
-        if (node.data === data) {
-          ret = node;
-        } else {
-          findIt(node.left, data);
-          findIt(node.right, data);
-        }
+    let node = this.root;
+    while (node) {
+      if (data === node.data) {
+        return node;
+      } else if (data < node.data) {
+        node = node.left;
+      } else {
+        node = node.right;
       }
     }
-
-    findIt(this.root, data);
-    return ret;
+    return null;
   }
 
   remove(data) {
@@ -161,12 +150,9 @@ class Tree {
     const leftChildHeight = this.getNodeHeight(node.left);
     const rightChildHeight = this.getNodeHeight(node.right);
     const max = Math.max(leftChildHeight, rightChildHeight);
-    return max + 1; // 加上自己本身
+    return max + 1;
   }
 
-  /**
-   * ==== traversal recursive version ====
-   */
   inOrder(callback) {
     this._forEach(this.root, callback, 'middle');
   }
@@ -197,77 +183,56 @@ class Tree {
     }
   }
 
-  levelOrder(callback) {
-    const queue = [];
-    let node = this.root;
-    node && queue.push(node);
-    while (queue.length) {
-      node = queue.shift();
-      callback(node);
-      if (node.left) {
-        queue.push(node.left);
-      }
-      if (node.right) {
-        queue.push(node.right);
-      }
-    }
-  }
+  toString() {}
 
-  /**
-   * ==== stack version ====
-   */
-  // preOrder(callback) {
-  //   // 口訣：中左右
-  //   const stack = [];
-  //   let node = this.root;
-  //   while (node || stack.length) {
-  //     if (node) {
-  //       callback(node); // 中先於左
-  //       stack.push(node);
-  //       node = node.left; // push left
-  //     } else {
-  //       node = stack.pop();
-  //       node = node.right; // push right
-  //     }
-  //   }
-  // }
-
-  // inOrder(callback) {
-  //   // 口訣：左中右
-  //   const stack = [];
-  //   let node = this.root;
-  //   while (node || stack.length) {
-  //     if (node) {
-  //       stack.push(node);
-  //       node = node.left; // push left
-  //     } else {
-  //       node = stack.pop();
-  //       callback(node); // 中先於右
-  //       node = node.right; // push right
-  //     }
-  //   }
-  // }
-
-  // postOrder(callback) {
-  //   // 口訣：左右中
-  //   const stack = [];
-  //   const out = [];
-  //   let node = this.root;
-  //   while (node || stack.length) {
-  //     if (node) {
-  //       // 類似於 preOrder
-  //       stack.push(node);
-  //       out.push(node);
-  //       node = node.right;
-  //     } else {
-  //       node = stack.pop();
-  //       node = node.left;
-  //     }
-  //   }
-  //   while (out.length) {
-  //     callback(out.pop());
-  //   }
-  // }
+  printNodeByLevel() {}
 }
 
-export { Tree };
+/**
+ * find successor of node
+ * @param {TreeNode} node
+ * @returns {TreeNode | null}
+ */
+function predecessor(node) {
+  let ret;
+  if (node.left) {
+    // 如果有左子樹
+    ret = node.left;
+    while (ret.right) {
+      // 在左子樹中找到最右邊的節點
+      ret = ret.right;
+    }
+    return ret;
+  } else {
+    let p = node.parent;
+    while (p && p.left === node) {
+      node = p; // 找到一個父節點，是其父節點的父節點的左子節點
+      p = p.parent;
+    }
+    return p;
+  }
+}
+
+/**
+ * find successor of node
+ * @param {TreeNode} node
+ * @returns {TreeNode | null}
+ */
+function successor(node) {
+  if (node.right) {
+    // 如果有右子樹
+    let ret = node.right;
+    while (ret.left) {
+      // 在右子樹中找到最左邊的節點
+      ret = ret.left;
+    }
+    return ret;
+  } else {
+    let p = node.parent;
+    while (p && p.right === node) {
+      node = p; // 找到一個父節點，是其父節點的父節點的右節點
+      p = p.parent;
+    }
+    return p;
+  }
+}
