@@ -18,7 +18,7 @@ backtracking 由兩個部分組成：入口函式和遞迴函式（backtrack）�
 <p>0/1 背包問題</p>
 </div>
 
-當所給問題是確定滿足某種性質的 n 個元素排列時，對應的解空間樹稱為排列樹。例如旅行推銷員問題（如下圖）的解空間樹是一棵排列樹，這類排列樹通常有 $n!$ 個葉節點。遍歷子集樹的演算法需要 $O(2^n)$ 的時間。
+當所給問題是確定滿足某種性質的 n 個元素排列時，對應的解空間樹稱為排列樹。例如旅行推銷員問題（如下圖）的解空間樹是一棵排列樹，這類排列樹通常有 $n!$ 個葉節點。遍歷子集樹的演算法需要 $O(n!)$ 的時間。
 
 <div align="center">
 <img src="./images/tsp-problem.png" width="550px">
@@ -94,7 +94,7 @@ function main(set, 其他參數) {
 
 ### 沒重複元素的子集問題
 
-這是 LeetCode [78. Subsets](https://leetcode.com/problems/subsets/) 的原題，給定一個不包含重複元素的整數陣列 nums，回傳該陣列所有可能的子集（幂集）。注意：結果集不能包含重複的子集。
+這是 LeetCode [78. Subsets](https://leetcode.com/problems/subsets/) 的原題，給定一個不包含重複元素的整數陣列 `nums`，回傳該陣列所有可能的子集（幂集）。注意：結果集不能包含重複的子集。
 
 Example 1:
 
@@ -151,3 +151,156 @@ function subsets(nums) {
 | `1` | `[2]`       | `[[], [1], [1, 2], [1, 2, 3], [1, 3], [2]]`              |
 | `2` | `[2, 3]`    | `[[], [1], [1, 2], [1, 2, 3], [1, 3], [2], [2, 3]]`      |
 | `2` | `[3]`       | `[[], [1], [1, 2], [1, 2, 3], [1, 3], [2], [2, 3], [3]]` |
+
+### 有重複元素的子集問題
+
+如果今天給定的陣列存在重複元素呢？我們再來看看 [90. Subsets II](https://leetcode.com/problems/subsets-ii/) 的原題，給定一個可能包含重複元素的整數陣列 `nums`，回傳該陣列所有可能的子集（幂集）。注意：結果集不能包含重複的子集。
+
+Example 1:
+
+```text
+Input: nums = [1,2,2]
+Output: [[],[1],[1,2],[1,2,2],[2],[2,2]]
+```
+
+Example 2:
+
+```text
+Input: nums = [0]
+Output: [[],[0]]
+```
+
+與上一題只有一點差別，但它只是對候選集做出限制，即結果集中不能出現兩個 `[1,2]` 陣列。
+
+我們可以使用 `Hash Table` 來去重，實作程式碼如下：
+
+```js
+function subsetsWithDup(nums) {
+  nums.sort((a, b) => a - b);
+  const result = [];
+  const candidate = [];
+  const end = nums.length;
+  const hash = new Map();
+
+  function backtrack(start) {
+    const candidateKey = candidate.toString();
+    if (!hash.get(candidateKey)) { // 去除重複
+      result.push([...candidate]);
+      hash.set(candidateKey, true);
+    }
+    for (let i = start; i < end; i++) {
+      candidate.push(nums[i]);
+      backtrack(i + 1);
+      candidate.pop();
+    }
+  }
+
+  backtrack(0);
+  return result;
+}
+```
+
+當然，我們也可以在遞迴函式的 `for` 迴圈中加入判斷去重，有興趣的讀者可以嘗試一下。
+
+### 有重複元素的組合總和
+
+這題是 [39. Combination Sum](https://leetcode.com/problems/combination-sum-ii/) 的原題，給定一個無重複元素的正整數陣列 `candidates` 和一個正整數 `target`，找出 `candidates` 中所有可以使數字之和為 `target` 的組合。`candidates` 中的數字可以無限制重複被選取。
+
+Example 1:
+
+```text
+Input: candidates = [2,3,6,7], target = 7
+Output: [[2,2,3],[7]]
+```
+
+Example 2:
+
+```text
+Input: candidates = [2,3,5], target = 8
+Output: [[2,2,2,2],[2,3,3],[3,5]]
+```
+
+Example 3:
+
+```text
+Input: candidates = [2], target = 1
+Output: []
+```
+
+思路：本題更接近我們的模板，由於元素可以重複使用，我們在遞迴函式的 `for` 迴圈裡就不用改變 `start` 變數。並且我們還要計算放入候選集的元素的總和是否為 `target`，但總不能每次都把候選集加總一次吧，反過來，我們每次將它與新元素相減，只要結果為零，就退出遞迴。實作程式碼如下：
+
+```js
+function combinationSum(candidates, target) {
+  const result = [];
+  const combination = [];
+  const end = candidates.length;
+
+  function backtrack(start, target) {
+    if (target === 0) { // 等於 0，退出遞迴
+      result.push([...combination]);
+      return;
+    }
+    if (target > 0) { // 大於 0，繼續新增元素
+      for (let i = start; i < end; i++) {
+        combination.push(candidates[i]);
+        // 注意這裡 i 沒有加 1，因為可以重複使用相同的數字
+        backtrack(i, target - candidates[i]);
+        combination.pop();
+      }
+    }
+  }
+
+  backtrack(0, target);
+  return result;
+}
+```
+
+### 無重複元素的組合總和
+
+這題是 [40. Combination Sum II](https://leetcode.com/problems/combination-sum-ii/) 的原題，給定一個元素範圍為 `1~50` 的整數陣列和一個目標數字 `target`，找出陣列中所有可以使數字之和為 `target` 的組合。陣列中的每個數字只能在組合中使用一次。結果集不能包含重複的組合。
+
+Example 1:
+
+```text
+Input: candidates = [10,1,2,7,6,1,5], target = 8
+Output: [[1,1,6],[1,2,5],[1,7],[2,6]]
+```
+
+Example 2:
+
+```text
+Input: candidates = [2,5,2,1,2], target = 5
+Output: [[1,2,2],[5]]
+```
+
+思路與上面很相似，但由於元素只使用一次，我們只要在迴圈中改變 `start` 的值即可。並且題目要求結果集不能包含重複的組合，解決方案一樣是使用 `Hash Table` 去重。實作程式碼如下：
+
+```js
+function combinationSum2(candidates, target) {
+  candidates.sort((a, b) => a - b);
+  const result = [];
+  const combination = [];
+  const end = candidates.length;
+  const hash = {};
+
+  function backtrack(start, target) {
+    const combinationKey = combination.toString(); // 將陣列轉為字串當作 key
+    if (target === 0 && !hash[combinationKey]) {
+      result.push([...combination]);
+      hash[combinationKey] = true;
+      return;
+    }
+
+    if (target > 0) {
+      for (let i = start; i < end; i++) {
+        combination.push(candidates[i]);
+        backtrack(i + 1, target - candidates[i]);
+        combination.pop();
+      }
+    }
+  }
+
+  backtrack(0, target);
+  return result;
+}
+```
