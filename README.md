@@ -37,6 +37,13 @@
   - [Fractional Knapsack](src/algorithms/greedy/fractional-knapsack)
 - Backtracking
   - [Word Search](src/algorithms/backtracking/word-search)
+  - [Subsets](src/algorithms/backtracking/subsets)
+  - [Subsets II](src/algorithms/backtracking/subsets-ii)
+  - [Combination Sum](src/algorithms/backtracking/combination-sum)
+  - [Combination Sum II](src/algorithms/backtracking/combination-sum-ii)
+  - [0/1 Knapsack](src/algorithms/backtracking/01-knapsack)
+  - [Boat Load](src/algorithms/backtracking/boat-load)
+  - [Matchsticks to Square](src/algorithms/backtracking/matchsticks-to-square)
 - Dynamic Programming
   - [0/1 Knapsack Problem](src/algorithms/dynamic-programming/knapsack-problem)
   - [Longest Common Subsequence (LCS)](src/algorithms/dynamic-programming/longest-common-subsequence)

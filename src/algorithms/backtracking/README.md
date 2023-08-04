@@ -304,3 +304,173 @@ function combinationSum2(candidates, target) {
   return result;
 }
 ```
+
+### 0/1 背包問題
+
+給定 n 個重量為 $w_1, w_2, ..., w_n$，價值為 $v_1, v_2, ..., v_n$ 的物品和一個容量為 capacity 的背包，求如何裝才能在不超過背包承重的情況下，使得背包中物品的總價值最大？
+
+Example:
+
+```text
+input: n = 5, [2, 2, 6, 5, 4], [6, 3, 5, 4, 6], capacity = 10
+output: 15, [1, 1, 0, 0, 1] // 1 表示選取，0 表示不選取
+```
+
+0/1 背包問題的解題思路在於遞迴函式的 `for` 迴圈，其 `end` 變數不再是物品的數量，而是我們決策分支的數量、選還是不選。因此 end = 1（從零開始），然後我們設計一個陣列，來記錄該物品的選擇情況。由於限制條件存在兩個，首先是放進背包的總重量不能超過背包的容量，因此我們需要不斷累計這個變數。其次，當選擇最後一個物品後，我們要看物品的總價值是否比之前的還高。實作程式碼如下：
+
+```js
+function knapsack01(n, weights, values, capacity) {
+  const allocation = new Array(n).fill(0); // 表示是否選中
+  let currValue = 0;
+  let currWeight = 0;
+  let maxValue = 0;
+  let maxWeight = 0;
+  let result = [];
+
+  function backtrack(start) {
+    if (start === n && currValue > maxValue) {
+      maxValue = currValue;
+      maxWeight = currWeight;
+      result = [...allocation];
+      return;
+    }
+
+    for (let i = 0; i < 2; i++) {
+      if (currWeight + i * weights[start] <= capacity) {
+        allocation[start] = i; // 0 為不放進包中，1 為放進包中
+        currWeight += i * weights[start];
+        currValue += i * values[start];
+        backtrack(start + 1);
+        currWeight -= i * weights[start];
+        currValue -= i * values[start];
+      }
+    }
+  }
+
+  backtrack(0);
+  return [maxValue, result];
+}
+```
+
+### 裝載問題
+
+有 `n` 個集裝箱要裝上兩艘輪船，兩艘輪船的載重分別為 `c1` 和 `c2`。其中每個集裝箱的重量為 `[w0, w1, ..., wi]`，請問是否有一個合理的裝載方案，可將這 `n` 個集裝箱裝上兩艘輪船？
+
+如果有，請給出一個裝載方案。
+
+Example 1:
+
+```text
+input: c1 = 50, c2 = 50, goods = [10, 40, 40]
+output: [[10, 40], [40]]
+```
+
+Example 2:
+
+```text
+input: c1 = 50, c2 = 50, goods = [20, 40, 40]
+output: [[], []]
+```
+
+思路：這題與 0/1 背包問題很相似，只不過上一題是放到一艘船（包）上，這題是放到兩艘船上。在之前的題型中，我們不知道結果集中有多少個子陣列，現在我們明確知道有兩個，我們可以直接生成所有子陣列。然後在遞迴函式的迴圈中，根據子陣列的總和依次判定是否能繼續放東西。實作程式碼如下：
+
+```js
+function boatLoad(c1, c2, goods) {
+  goods.sort();
+  const boats = [[], []];
+  const currWeight = [0, 0];
+  const maxWeight = [c1, c2];
+
+  function backtrack(start) {
+    if (start >= goods.length) {
+      return currWeight[0] <= maxWeight[0] && currWeight[1] <= maxWeight[1];
+    } else {
+      const weight = goods[start];
+      for (let i = 0; i < 2; i++) {
+        if (currWeight[i] + weight > maxWeight[i]) {
+          continue;
+        }
+
+        currWeight[i] += weight;
+        boats[i].push(weight);
+
+        if (backtrack(start + 1)) {
+          return true;
+        }
+
+        currWeight[i] -= weight;
+        boats[i].pop();
+      }
+    }
+    return false;
+  }
+
+  backtrack(0);
+  return boats;
+}
+```
+
+### 火柴棒拼出正方形
+
+給定一個整數陣列 `matchsticks`，裡面的數字代表該個火柴棒的長度，求解是否能將這些火柴棒拼成一個正方形？例如 `[4, 3, 3, 2, 2, 1, 1]` 能拼成如下圖所示的正方形：
+
+<div align="center">
+<img src="./images/matchsticks.png" width="250px">
+<p>火柴棒拼出正方形問題</p>
+</div>
+
+思路：既然是正方形，那肯定有四條邊，因此陣列中的元素不能少於 4 個，且每條邊的長度必須相等，換言之，所有元素的總和必須是 4 的倍數。這樣一來我們就可以輕鬆排除一些不合法的參數。然後進入探索過程，這和裝載問題差不多，不同的是我們需要 4 個子陣列。實作程式碼如下：
+
+```js
+function makesquare(matchsticks) {
+  if (matchsticks.length < 4) {
+    // 如果火柴棒數量小於 4，則無法構成正方形
+    return false;
+  }
+
+  const sides = [[], [], [], []]; // sides 是用來觀察每個邊的火柴棒的，可以不要有
+  const total = matchsticks.reduce((acc, curr) => acc + curr, 0);
+
+  if (total % 4) {
+    // 不能被 4 整除
+    return false;
+  }
+
+  matchsticks.sort((a, b) => b - a); // 由大到小排序
+  const maxSideLength = total / 4;
+  const currSide = [0, 0, 0, 0];
+  const end = matchsticks.length;
+
+  function backtrack(start) {
+    if (start >= end) {
+      return (
+        currSide[0] === maxSideLength &&
+        currSide[1] === maxSideLength &&
+        currSide[2] === maxSideLength &&
+        currSide[3] === maxSideLength
+      );
+    } else {
+      for (let i = 0; i < 4; i++) {
+        if (currSide[i] + matchsticks[start] > maxSideLength) {
+          continue;
+        }
+
+        sides[i].push(matchsticks[start]); // 這個可以不要
+        currSide[i] += matchsticks[start];
+
+        if (backtrack(start + 1)) {
+          return true;
+        }
+
+        sides[i].pop(); // 這個可以不要
+        currSide[i] -= matchsticks[start];
+      }
+    }
+    return false;
+  }
+
+  const result = backtrack(0);
+  console.log(JSON.stringify(sides), result);
+  return result;
+}
+```
