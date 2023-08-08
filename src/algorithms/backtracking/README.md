@@ -689,3 +689,69 @@ function schedule(n, timeA, timeB) {
   return [bestTime, bestFlow];
 }
 ```
+
+### 八皇后問題
+
+八皇后問題（Eight Queens Puzzle）是在 1848 年由西洋棋棋手 Max Bezzel 提出的。問題是：在 8x8 的棋盤上，放置 8 個皇后，使得任意兩個皇后都不能在同一行、同一列或同一斜線上（即無法互吃），一共有幾種不同的方法？
+
+<div align="center">
+<img src="./images/8queens-puzzle.png">
+<p>Eight Queens Puzzle</p>
+</div>
+
+思路：首先我們要表示皇后的座標，直接的做法是用一個二維陣列來模擬棋盤，放皇后的格子為 1，沒有放的格子為 0。但是從條件可以知道，每一列只能放一個皇后，因此我們可以用一維陣列來表示，`path[col] = row`，表示這個位於 `row` 列的皇后，其所在的行爲 `col`。
+
+接著我們要判定兩個格子是否在同一條線上，由於每個皇后所在的列都不一樣，因此不需要判斷列所在的線，我們只需要判斷：縱向線、對角線（左上到右下）、反對角線。接下來需要判斷這些線投射到每一列時的列號。縱向線不用多說，直接取其 `y` 座標，對角線是 `x` 座標 - `y` 座標的相反數，反對角線是 `x` 座標 + `y` 座標。如下圖所示：
+
+<div align="center">
+<img src="./images/8queens-puzzle-2.png" width="550px">
+<p>Eight Queens Puzzle 2</p>
+</div>
+
+實作程式碼如下：
+
+```js
+function findQueen() {
+  const result = [];
+  const path = [];
+  const columns = {};
+  const mainDiagonal = {};
+  const backDiagonal = {};
+
+  function isSafe(row, col) {
+    return !columns[col] && !mainDiagonal[-(row - col)] && !backDiagonal[row + col];
+  }
+
+  function backtrack(row) {
+    if (row === 8) {
+      result.push([...path]);
+    } else {
+      for (let col = 0; col < 8; col++) {
+        if (isSafe(row, col)) {
+          // 目前位置可以放置
+          path[row] = col; // 紀錄放置的位置
+          columns[col] = true; // 目前皇后所在位置
+          mainDiagonal[-(row - col)] = true; // 主對角線在第一列行號
+          backDiagonal[row + col] = true; // 反對角線第一列的行號
+          backtrack(row + 1);
+          // 回溯
+          path[row] = undefined;
+          columns[col] = false;
+          mainDiagonal[-(row - col)] = false;
+          backDiagonal[row + col] = false;
+        }
+      }
+    }
+  }
+
+  backtrack(0);
+  return result.length;
+}
+```
+
+## 參考資料
+
+- [《JavaScript 算法：基本原理與代碼實現》](https://www.tenlong.com.tw/products/9787115596154?list_name=r-zh_cn)
+- [演算法筆記 - Backtracking](https://web.ntnu.edu.tw/~algo/Backtracking.html)
+- [裝載問題 - by 司徒正美](https://zhuanlan.zhihu.com/p/84807112)
+- [Eight queens puzzle](https://en.wikipedia.org/wiki/Eight_queens_puzzle)

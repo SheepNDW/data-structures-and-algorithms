@@ -41,9 +41,12 @@
   - [Subsets II](src/algorithms/backtracking/subsets-ii)
   - [Combination Sum](src/algorithms/backtracking/combination-sum)
   - [Combination Sum II](src/algorithms/backtracking/combination-sum-ii)
+  - [Permutations](src/algorithms/backtracking/permutations)
   - [0/1 Knapsack](src/algorithms/backtracking/01-knapsack)
   - [Boat Load](src/algorithms/backtracking/boat-load)
   - [Matchsticks to Square](src/algorithms/backtracking/matchsticks-to-square)
+  - [Prime Ring Problem](src/algorithms/backtracking/prime-ring-problem)
+  - [8 Queens Puzzle](src/algorithms/backtracking/8-queens-puzzle)
 - Dynamic Programming
   - [0/1 Knapsack Problem](src/algorithms/dynamic-programming/knapsack-problem)
   - [Longest Common Subsequence (LCS)](src/algorithms/dynamic-programming/longest-common-subsequence)
@@ -80,6 +83,7 @@ import the file you want to debug in `main.js`, and print the result in the cons
 ## Changelog
 
 - ...
+- 2023/08/08: Updated [backtracking notes](./src/algorithms/backtracking)
 - 2023/07/19: Updated [hash notes](./src/data-structures/map/hash-table)
 - 2023/07/14: Updated [bitmap notes](./src/data-structures/bitmap)
 - 2023/07/05: Updated [stack notes](./src/data-structures/stack)
