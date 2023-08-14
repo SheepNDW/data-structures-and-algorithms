@@ -50,3 +50,35 @@ export function knapsack(weights, values, W) {
 
   return f[n - 1][W];
 }
+
+export function knapsack01(w, v, W) {
+  if (w.length === 0 || v.length === 0 || W === 0) {
+    return 0;
+  }
+
+  const n = w.length;
+  // 建立一個 n * (W + 1) 的矩陣
+  const dp = new Array(n).fill(0).map(() => new Array(W + 1).fill(0));
+
+  // 初始化第 0 列
+  for (let i = 0; i <= W; i++) {
+    dp[0][i] = i >= w[0] ? v[0] : 0;
+  }
+
+  // 初始化第 0 行
+  for (let i = 0; i < n; i++) {
+    dp[i][0] = 0;
+  }
+
+  for (let i = 1; i < n; i++) {
+    for (let j = 1; j <= W; j++) {
+      if (j < w[i]) {
+        dp[i][j] = dp[i - 1][j];
+      } else {
+        dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - w[i]] + v[i]);
+      }
+    }
+  }
+
+  return dp[n - 1][W];
+}

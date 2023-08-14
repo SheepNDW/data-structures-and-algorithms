@@ -14,15 +14,15 @@ export function LCS(str1, str2) {
     dp[i] = [0];
     for (let j = 1; j <= n; j++) {
       if (str1[i - 1] === str2[j - 1]) {
-        dp[i][j] = 1 + dp[i - 1][j - 1];
+        dp[i][j] = dp[i - 1][j - 1] + 1;
       } else {
         dp[i][j] = Math.max(dp[i][j - 1], dp[i - 1][j]);
       }
     }
   }
 
-  const res = printLCS(dp, str1, str2, m, n);
-  console.log(res);
+  const lcs = printLCS(dp, str1, str2, m, n);
+  console.log(lcs);
   return dp[m][n];
 }
 

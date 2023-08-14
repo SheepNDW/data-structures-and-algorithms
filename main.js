@@ -36,6 +36,8 @@ import { Tree } from '@/data-structures/tree/binary-tree/Tree';
 // import { binarySearch } from '@/algorithms/search/binary-search/binarySearch';
 // import { mergeSort } from '@/algorithms/sorting/merge-sort/MergeSort';
 
+import { coinChange } from '@/algorithms/dynamic-programming/coin-change/coinChange';
+
 // const names = ['First Name', 'Last Name', 'address', 'phone', 'k101', 'k110'];
 
 // const descs = ['Kobe', 'Bryant', 'USA', '26300788', 'Value1', 'Value2'];
@@ -53,17 +55,19 @@ import { Tree } from '@/data-structures/tree/binary-tree/Tree';
 //   console.log(key, value);
 // });
 
-const tree = new Tree();
+// const tree = new Tree();
 
-tree.insert(1);
-tree.insert(2);
-tree.insert(3);
-tree.insert(4);
-tree.insert(5);
-tree.insert(6);
-tree.insert(7);
-tree.insert(8);
+// tree.insert(1);
+// tree.insert(2);
+// tree.insert(3);
+// tree.insert(4);
+// tree.insert(5);
+// tree.insert(6);
+// tree.insert(7);
+// tree.insert(8);
 
-// tree.remove(1);
+// // tree.remove(1);
 
-console.log(tree.getNodeSize(tree.root));
+// console.log(tree.getNodeSize(tree.root));
+
+console.log(coinChange([1, 2, 5], 11));

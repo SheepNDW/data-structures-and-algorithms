@@ -48,8 +48,12 @@
   - [Prime Ring Problem](src/algorithms/backtracking/prime-ring-problem)
   - [8 Queens Puzzle](src/algorithms/backtracking/8-queens-puzzle)
 - Dynamic Programming
+  - [Fibonacci Sequence](src/algorithms/dynamic-programming/fibonacci)
+  - [Climbing Stairs](src/algorithms/dynamic-programming/climbing-stairs)
+  - [Coin Change](src/algorithms/dynamic-programming/coin-change)
   - [0/1 Knapsack Problem](src/algorithms/dynamic-programming/knapsack-problem)
   - [Longest Common Subsequence (LCS)](src/algorithms/dynamic-programming/longest-common-subsequence)
+  - [Longest Non Decreasing Subsequence](src/algorithms/dynamic-programming/longest-non-decreasing-subsequence)
 - [Fisher-Yates Shuffle](src/algorithms/fisher-yates-shuffle) - random array permutation
 
 ## How to use this repository
@@ -83,6 +87,7 @@ import the file you want to debug in `main.js`, and print the result in the cons
 ## Changelog
 
 - ...
+- 2023/08/14: Updated [dynamic programming notes](./src/algorithms/dynamic-programming)
 - 2023/08/08: Updated [backtracking notes](./src/algorithms/backtracking)
 - 2023/07/19: Updated [hash notes](./src/data-structures/map/hash-table)
 - 2023/07/14: Updated [bitmap notes](./src/data-structures/bitmap)
