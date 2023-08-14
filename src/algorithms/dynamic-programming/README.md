@@ -146,7 +146,7 @@ explanation: 11 = 5 + 5 + 1
 $$
 f(n) = \begin{cases}
   0 & \text{if } n = 0 \\
-  1 + \min \left\{ f(n - c_i) \mid i \in [1, k] \right\} & \text{otherwise}
+  1 + \min \{ f(n - c_i) \mid i \in [1, k] \} & \text{otherwise}
 \end{cases}
 $$
 > k 為硬幣種類數量，$c_i$ 為第 i 種硬幣的面額。
@@ -348,7 +348,7 @@ $$
 f(i, j) = \begin{cases}
   0 & !s_1[i] \text{ || } !s_2[j] \\
   f(i - 1, j - 1) + 1 &  s_1[i] == s_2[j] \\
-  \max \left\{ f(i - 1, j), f(i, j - 1) \right\} & s_1[i] \text{ != } s_2[j]
+  \max \{ f(i - 1, j), f(i, j - 1) \} & s_1[i] \text{ != } s_2[j]
 \end{cases}
 $$
 
