@@ -87,6 +87,7 @@ import the file you want to debug in `main.js`, and print the result in the cons
 ## Changelog
 
 - ...
+- 2023/08/15: Updated [queue notes](./src/data-structures/queue)
 - 2023/08/14: Updated [dynamic programming notes](./src/algorithms/dynamic-programming)
 - 2023/08/08: Updated [backtracking notes](./src/algorithms/backtracking)
 - 2023/07/19: Updated [hash notes](./src/data-structures/map/hash-table)
