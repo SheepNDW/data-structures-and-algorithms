@@ -27,6 +27,7 @@ import { bubbleSort } from '@/data-structures/linked-list/sorting/bubble-sort';
 import { Hash } from '@/data-structures/map/hash-table/chaining/Hash';
 // import { BinarySearchTree } from '@/data-structures/tree/binary-search-tree/BinarySearchTree';
 import { Tree } from '@/data-structures/tree/binary-tree/Tree';
+import { BST } from '@/data-structures/tree/binary-search-tree/BST';
 // import { MinHeap } from '@/data-structures/heap/MinHeap';
 // import { MaxHeap } from '@/data-structures/heap/MaxHeap';
 
@@ -55,19 +56,15 @@ import { coinChange } from '@/algorithms/dynamic-programming/coin-change/coinCha
 //   console.log(key, value);
 // });
 
-// const tree = new Tree();
+const tree = new BST();
 
-// tree.insert(1);
-// tree.insert(2);
-// tree.insert(3);
-// tree.insert(4);
-// tree.insert(5);
-// tree.insert(6);
-// tree.insert(7);
-// tree.insert(8);
+[53, 47, 60, 10, 30, 51, 52, 50, 200, 55, 504, 56].forEach((num) => tree.insert(num));
+
+// tree.levelOrder((node) => console.log(node.data));
+console.log(tree.toString());
 
 // // tree.remove(1);
 
 // console.log(tree.getNodeSize(tree.root));
 
-console.log(coinChange([1, 2, 5], 11));
+// console.log(coinChange([1, 2, 5], 11));

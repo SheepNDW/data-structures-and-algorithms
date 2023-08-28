@@ -183,9 +183,145 @@ export class BST {
     }
   }
 
-  toString() {}
+  printNodeByLevel(callback) {
+    const queue = [];
+    let node = this.root;
+    if (node) {
+      queue.push(node);
+      queue.push(0);
+    }
+    while (queue.length > 0) {
+      node = queue.shift();
+      if (node) {
+        callback(node);
+        if (node.left) {
+          queue.push(node.left);
+        }
+        if (node.right) {
+          queue.push(node.right);
+        }
+      } else if (queue.length > 0) {
+        callback(node); // output 0
+        queue.push(0);
+      }
+    }
+    callback(0);
+  }
 
-  printNodeByLevel() {}
+  toString(displayData) {
+    // 輔助方法，讓資料置中對齊
+    const brickLen = 6;
+    const SW = ' ';
+    const LINE = '_';
+
+    displayData =
+      displayData ||
+      function (node) {
+        const { data, left, right } = node;
+        let s = '(' + data + ')';
+        const isLeaf = !left && !right;
+        const fillChar = isLeaf ? SW : LINE;
+        const paddingLength = brickLen - s.length;
+
+        for (let i = 0; i < paddingLength; i++) {
+          if (i % 2 === 0) {
+            s = s.padEnd(s.length + 1, fillChar);
+          } else {
+            s = s.padStart(s.length + 1, fillChar);
+          }
+        }
+        return s;
+      };
+
+    // 建立 4 個字元的空白或底線
+    function createPadding(s, n = brickLen) {
+      let ret = '';
+      for (let i = 0; i < n; i++) {
+        ret += s;
+      }
+      return ret;
+    }
+
+    // ==== 以下是主要的 toString 方法 ====
+    // 新增索引值
+    let index = 0;
+    this.inOrder((node) => {
+      node.index = index++;
+    });
+    // 取得每一層的節點
+    const allLevels = [];
+    let currLevel = [];
+    this.printNodeByLevel((node) => {
+      if (node === 0) {
+        allLevels.push(currLevel);
+        currLevel = [];
+      } else {
+        currLevel.push(node);
+      }
+    });
+
+    // bricks 中有 data 的層級，branches 只是用來放斜線的層級，兩個都是二維陣列
+    const bricks = [];
+    const branches = [];
+    for (let i = 0; i < allLevels.length; i++) {
+      if (!bricks[i]) {
+        bricks[i] = [];
+        branches[i] = [];
+      }
+
+      let cbrick = bricks[i];
+      let cbranch = branches[i];
+      let level = allLevels[i];
+      while (level.length > 0) {
+        let el = level.shift();
+        let j = el.index;
+        // 確保 cbirck[j] 與 cbranch[j] 等長
+        cbrick[j] = displayData(el);
+        cbranch[j] = createPadding(SW, cbrick[j].length);
+
+        if (el.parent) {
+          let pbrick = bricks[i - 1];
+          let pbranch = branches[i - 1];
+          let pindex = el.parent.index;
+          if (el === el.parent.left) {
+            // 左子樹
+            for (let k = j + 1; k < pindex; k++) {
+              pbrick[k] = createPadding(LINE);
+            }
+            for (let k = j + 1; k < pindex; k++) {
+              pbranch[k] = createPadding(SW);
+            }
+            pbranch[j] = createPadding(SW, brickLen - 1) + '/';
+          } else {
+            // 右子樹
+            for (let k = pindex + 1; k < j; k++) {
+              pbrick[k] = createPadding(LINE);
+            }
+            for (let k = pindex + 1; k < j; k++) {
+              pbranch[k] = createPadding(SW);
+            }
+            pbranch[j] = '\\' + createPadding(SW, brickLen - 1);
+          }
+        }
+        j--;
+        inner: while (j > -1) {
+          // 添加空白
+          if (cbrick[j] == null) {
+            cbrick[j] = createPadding(SW);
+            cbranch[j] = createPadding(SW);
+          } else {
+            break inner;
+          }
+          j--;
+        }
+      }
+    }
+    return bricks
+      .map((row, i) => {
+        return row.join('') + '\n' + branches[i].join('');
+      })
+      .join('\n');
+  }
 }
 
 /**
