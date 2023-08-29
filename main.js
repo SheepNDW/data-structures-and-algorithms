@@ -56,15 +56,35 @@ import { coinChange } from '@/algorithms/dynamic-programming/coin-change/coinCha
 //   console.log(key, value);
 // });
 
-const tree = new BST();
+// const tree = new BST();
 
-[53, 47, 60, 10, 30, 51, 52, 50, 200, 55, 504, 56].forEach((num) => tree.insert(num));
+// [53, 47, 60, 10, 30, 51, 52, 50, 200, 55, 504, 56].forEach((num) => tree.insert(num));
 
 // tree.levelOrder((node) => console.log(node.data));
-console.log(tree.toString());
+// console.log(tree.toString());
 
 // // tree.remove(1);
 
 // console.log(tree.getNodeSize(tree.root));
 
 // console.log(coinChange([1, 2, 5], 11));
+
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const randomIndex = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[randomIndex]] = [arr[randomIndex], arr[i]];
+  }
+  return arr;
+}
+
+const count = { 123: 0, 132: 0, 213: 0, 231: 0, 312: 0, 321: 0 };
+
+for (let i = 0; i < 600000; i++) {
+  const array = [1, 2, 3];
+  const rArray = shuffle(array);
+  count[rArray.join('')]++;
+}
+
+for (const key in count) {
+  console.log(key + ':', count[key]);
+}

@@ -88,6 +88,7 @@ import the file you want to debug in `main.js`, and print the result in the cons
 ## Changelog
 
 - ...
+- 2023/08/29: Updated [Fishery-Yates Shuffle notes](./src/algorithms/fisher-yates-shuffle)
 - 2023/08/18: Updated [heap notes](./src/data-structures/heap) & [priority queue notes](./src/data-structures/priority-queue)
 - 2023/08/15: Updated [queue notes](./src/data-structures/queue)
 - 2023/08/14: Updated [dynamic programming notes](./src/algorithms/dynamic-programming)
