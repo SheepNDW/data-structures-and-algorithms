@@ -134,7 +134,7 @@ function shuffle(arr) {
 
 ## 參考資料
 
-- [Fisher–Yates shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
+- [Fisher–Yates shuffle](https://marsgoat.github.io/XNnote/coding/FisherYatesShuffle.html)
 - [《Learning JavaScript Data Structures and Algorithms, 3/e》](https://www.tenlong.com.tw/products/9781788623872?list_name=trs-f)
 - [JavaScript 學演算法（二十一）- 洗牌演算法](https://chupai.github.io/posts/2008/shuffle_algorithm/)
 - [Shuffle an array](https://javascript.info/task/shuffle)
