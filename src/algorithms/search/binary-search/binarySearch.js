@@ -1,29 +1,28 @@
 /**
  * Binary search algorithm
+ * @param {*[]} arr - sorted array
  * @param {*} target - target value to search
- * @param {*[]} sortedArr - sorted array with comparable values
- * @param {number} [start] - left index
- * @param {number} [end] - right index
  * @return {number} index of found element or -1 if element is not found
  */
-export function binarySearch(target, sortedArr, start = 0, end = sortedArr.length - 1) {
-  if (start <= end && target >= sortedArr[start] && target <= sortedArr[end]) {
-    if (sortedArr[start] === target) {
-      return start;
-    }
-    if (sortedArr[end] === target) {
-      return end;
+function binarySearch(arr, target) {
+  let left = 0;
+  let right = arr.length - 1;
+
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2);
+
+    if (arr[mid] === target) {
+      return mid;
     }
 
-    const mid = Math.ceil((start + end) / 2);
-    if (sortedArr[mid] === target) {
-      return mid;
-    } else if (sortedArr[mid] > target) {
-      return binarySearch(target, sortedArr, start + 1, mid - 1);
+    if (arr[mid] < target) {
+      left = mid + 1;
     } else {
-      return binarySearch(target, sortedArr, mid + 1, end - 1);
+      right = mid - 1;
     }
   }
 
   return -1;
 }
+
+export { binarySearch };
