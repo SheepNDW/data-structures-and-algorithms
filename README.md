@@ -18,6 +18,7 @@
 - [Heap](src/data-structures/heap) - max and min heap versions
 - [Priority Queue](src/data-structures/priority-queue)
 - [bitmap](src/data-structures/bitmap)
+- [Union Find](src/data-structures/union-find)
 
 ## Algorithms
 
@@ -88,6 +89,8 @@ import the file you want to debug in `main.js`, and print the result in the cons
 ## Changelog
 
 - ...
+- 2023/09/23: Updated [Union Find notes](./src/data-structures/union-find)
+- 2023/09/12: Updated [Binary Search notes](./src/algorithms/search/binary-search)
 - 2023/08/29: Updated [Fishery-Yates Shuffle notes](./src/algorithms/fisher-yates-shuffle)
 - 2023/08/18: Updated [heap notes](./src/data-structures/heap) & [priority queue notes](./src/data-structures/priority-queue)
 - 2023/08/15: Updated [queue notes](./src/data-structures/queue)

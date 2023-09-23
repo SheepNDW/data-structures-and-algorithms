@@ -69,22 +69,41 @@ import { coinChange } from '@/algorithms/dynamic-programming/coin-change/coinCha
 
 // console.log(coinChange([1, 2, 5], 11));
 
-function shuffle(arr) {
-  for (let i = arr.length - 1; i > 0; i--) {
-    const randomIndex = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[randomIndex]] = [arr[randomIndex], arr[i]];
-  }
-  return arr;
-}
+import { UnionFind } from '@/data-structures/union-find/UnionFind';
 
-const count = { 123: 0, 132: 0, 213: 0, 231: 0, 312: 0, 321: 0 };
+const uf = new UnionFind(10);
+console.log('初始化');
+console.log(uf.toString());
 
-for (let i = 0; i < 600000; i++) {
-  const array = [1, 2, 3];
-  const rArray = shuffle(array);
-  count[rArray.join('')]++;
-}
+console.log('連接 5, 6');
+uf.merge(5, 6);
+console.log(uf.toString());
+console.log('連接 5, 6 之後的 weights: ');
+console.log(uf.weights);
 
-for (const key in count) {
-  console.log(key + ':', count[key]);
-}
+console.log('連接 1, 2');
+uf.merge(1, 2);
+console.log(uf.toString());
+console.log('連接 1, 2 之後的 weights: ');
+console.log(uf.weights);
+
+console.log('連接 2, 3');
+uf.merge(2, 3);
+console.log(uf.toString());
+console.log('連接 2, 3 之後的 weights: ');
+console.log(uf.weights);
+
+console.log('連接 1, 4');
+uf.merge(1, 4);
+console.log(uf.toString());
+console.log('連接 1, 4 之後的 weights: ');
+console.log(uf.weights);
+
+console.log('連接 1, 5');
+uf.merge(1, 5);
+console.log(uf.toString());
+console.log('連接 1, 5 之後的 weights: ');
+console.log(uf.weights);
+
+console.log('1 6 是否連接：' + uf.isConnected(1, 6));
+console.log('1 8 是否連接：' + uf.isConnected(1, 8));
