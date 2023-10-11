@@ -724,3 +724,58 @@ function accountsMerge(accounts) {
   return result;
 }
 ```
+
+### The Gangs
+
+這題來源自 [BOI2003]The Gangs，題目描述如下：
+
+在 1920 年的芝加哥：黑幫戰爭。如果兩個黑幫成員相遇了，那麼他們不是朋友就是敵人，他們遵循下面兩個準則：
+
+1. 如果 A 和 B 是朋友，B 和 C 是朋友，那麼 A 和 C 也是朋友。
+2. 如果 A 和 B 是敵人，B 和 C 是敵人，那麼 A 和 C 也是朋友。
+
+兩名黑幫成員只有在他們是朋友的情況下，才會屬於同一個幫派。現在你需要根據一些關於黑幫們的資訊，去得出究竟有多少個幫派。
+
+Example：
+
+輸入：
+```txt
+6,4,
+[['E', 1, 4],
+['F', 3, 5],
+['F', 4, 6],
+['E', 1, 2]]
+```
+
+輸出：3
+
+說明：第一列兩個參數是 `n` 表示人數 和 `m` 表示有幾筆關於黑幫的資訊，`1 < n < 1000, 1 <= m <= 100000`；然後是一個二維陣列，每個子陣列分為 `p`, `x`, `y`。`p` 的值可以是 `'F'` 或 `'E'`，當 `p` = `'F'` 時，表示 `x` 和 `y` 是朋友；當 `p` = `'E'` 時，表示 `x` 和 `y` 是敵人。
+
+解題：union-find 只能合併同類，但是無法去處理敵人。而敵人的敵人也算是同類。由於不知道是什麼編號，我們可以擴充陣列，將它放在 `[n+1, 2n]` 的位置，然後通過 `merge(x, y+n)` 的方式來合併。
+
+實作程式碼如下：
+
+```js
+function getGangs(n, counts, descriptions) {
+  const uf = new UnionFind(n * 2); // 放大2倍，將敵人的敵人分類放在 [n + 1, 2n]
+
+  for (let i = 0; i < counts; i++) {
+    const [type, a, b] = descriptions[i];
+
+    if (type === 'F') {
+      uf.merge(a, b); // 是朋友直接合併
+    } else {
+      uf.merge(a + n, b); // a 的敵人與 b 是朋友
+      uf.merge(a, b + n); // a 與 b 的敵人是朋友
+    }
+  }
+
+  const result = new Set();
+
+  for (let i = 1; i <= n; i++) {
+    result.add(uf.query(i)); // 用 set 去重複
+  }
+
+  return result.size;
+}
+```
