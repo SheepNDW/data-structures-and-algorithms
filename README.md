@@ -36,6 +36,7 @@
   - [Sequential Search](src/algorithms/search/sequential-search)
   - [Binary Search](src/algorithms/search/binary-search)
 - Greedy
+  - [Coin Change Greedy](src/algorithms/greedy/coin-change)
   - [Fractional Knapsack](src/algorithms/greedy/fractional-knapsack)
 - Backtracking
   - [Word Search](src/algorithms/backtracking/word-search)
@@ -89,6 +90,7 @@ import the file you want to debug in `main.js`, and print the result in the cons
 ## Changelog
 
 - ...
+- 2023/10/11: Updated [greedy notes](./src/algorithms/greedy)
 - 2023/09/23: Updated [Union Find notes](./src/data-structures/union-find)
 - 2023/09/12: Updated [Binary Search notes](./src/algorithms/search/binary-search)
 - 2023/08/29: Updated [Fishery-Yates Shuffle notes](./src/algorithms/fisher-yates-shuffle)
